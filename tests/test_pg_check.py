@@ -47,6 +47,13 @@ def test_help():
         assert option in result.stdout
 
 
+def test_no_arguments_shows_usage():
+    result = run()
+    assert result.returncode == 0
+    assert "usage:" in result.stdout
+    assert "CONNECTION CHECK" not in result.stdout
+
+
 @pytest.mark.parametrize("bad_args", [
     ["--port", "0"], ["--port", "70000"], ["--port", "abc"], ["--timeout", "0"],
     ["--host", ""], ["--ssl-ca-file", "/nonexistent/ca.pem"],

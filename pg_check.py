@@ -100,6 +100,9 @@ def parse_arguments():
     parser.add_argument("--ssl", action="store_true", default=DB_SSL,
                         help="Enable SSL with certificate verification")
     parser.add_argument("--ssl-ca-file", default=DB_SSL_CA_FILE, help="Optional CA certificate path")
+    if len(sys.argv) == 1:
+        parser.print_help()
+        sys.exit(EXIT_OK)
     args = parser.parse_args()
 
     problems = []
